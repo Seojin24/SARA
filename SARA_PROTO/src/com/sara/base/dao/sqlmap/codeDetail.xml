@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQLMap 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="CodeDetail">
+	<typeAlias alias="codeDetailBean" type="com.sara.base.to.CodeDetailBean" />
+
+<!-- 	<insert id="insertCodeInfo" parameterClass="codeDetailBean"> -->
+<!-- 		insert into -->
+<!-- 		CODE_INFO (DETAIL_CODE,DETAIL_NAME,USE_WHETHER,CATEGORY_CODE) -->
+<!-- 		values(#detailCode#,#detailName#,#useWhether#,#categoryCode#) -->
+<!-- 	</insert> -->
+
+<!-- 	<select id="selectCodeInfoCount" parameterClass="java.lang.String" -->
+<!-- 		resultClass="java.lang.Integer"> -->
+<!-- 		select count(*) from code_info where category_code=#categoryCode# -->
+<!-- 	</select> -->
+
+<!-- 	<delete id="deleteCodeInfo" parameterClass="java.util.HashMap"> -->
+<!-- 		delete from code_info where category_code=#categoryCode# and -->
+<!-- 		detail_code=#detailCode# -->
+<!-- 	</delete> -->
+
+<!-- 	<update id="updateCodeInfo" parameterClass="codeDetailBean"> -->
+<!-- 		update CODE_INFO set DETAIL_NAME=#detailName#, -->
+<!-- 		USE_WHETHER=#useWhether# -->
+<!-- 		where CATEGORY_CODE=#categoryCode# and DETAIL_CODE=#detailCode# -->
+<!-- 	</update> -->
+
+<!-- 	<delete id="deleteCodeInfoList" parameterClass="java.lang.String"> -->
+<!-- 		delete from CODE_INFO where CATEGORY_CODE=#categoryCode# -->
+<!-- 	</delete> -->
+
+
+<!-- 	<select id="selectCodeInfoList" parameterClass="java.lang.String" -->
+<!-- 		resultClass="codeDetailBean"> -->
+<!-- 		select category_code categoryCode,detail_code detailCode, -->
+<!-- 		detail_name detailName,use_whether useWhether  -->
+<!-- 		from code_info where category_code=#categoryCode# -->
+<!-- 	</select> -->
+
+<!-- 	<select id="getCodeName" parameterClass="java.util.HashMap" -->
+<!-- 		resultClass="java.lang.String"> -->
+<!-- 		select detail_name from code_info where category_code=#categoryCode# and -->
+<!-- 		detail_code=#detailCode# -->
+<!-- 	</select> -->
+
+</sqlMap>

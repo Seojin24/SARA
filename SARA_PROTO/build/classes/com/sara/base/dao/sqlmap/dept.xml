@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQLMap 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Dept">
+	<typeAlias alias="deptBean" type="com.sara.base.to.DeptBean" />
+	
+	<resultMap class="deptBean" id="deptBeanResultMap">
+		<result property="deptCode" column="DEPT_CODE" />
+		<result property="deptName" column="DEPT_NAME" />
+		<result property="deptHead" column="DEPT_HEAD" />
+		<result property="deptTel" column="DEPT_TEL" />
+		<result property="useWhether" column="USE_WHETHER" />
+	</resultMap>
+
+	<select id="getDeptName" parameterClass="java.lang.String" resultClass="java.lang.String">
+		select dept_name from dept where dept_code=#deptCode#
+	</select>
+	<!-- 조건값에 ?가 오는 경우는 parameterMap을 쓰는 경우!!??? -->
+	<select id="selectDeptList" parameterClass="java.util.HashMap"
+		resultMap="deptBeanResultMap">
+		select * from (select rownum rn, dept_code, dept_name,
+		dept_head, dept_tel,
+		use_whether from dept order by dept_code) t where
+		t.rn between #sr# and #er#
+	</select>
+
+	<select id="selectDeptCount" resultClass="java.lang.Integer">
+		select count(*) from dept
+	</select>
+
+	<update id="modifyDept" parameterClass="deptBean">
+		update dept set DEPT_NAME=#deptName#,DEPT_HEAD=#deptHead#,DEPT_TEL=#deptTel#,USE_WHETHER=#useWhether#
+		where DEPT_CODE=#deptCode#
+	</update>
+
+	<insert id="insertDept" parameterClass="deptBean">
+		insert into dept (DEPT_CODE,DEPT_NAME,USE_WHETHER,DEPT_HEAD,DEPT_TEL) values (#deptCode#,#deptName#,#useWhether#,#deptHead#,#deptTel#)
+	</insert>
+
+	<delete id="deleteDept" parameterClass="java.lang.String">
+		delete from dept where DEPT_CODE =#deptCode#
+	</delete>
+</sqlMap>

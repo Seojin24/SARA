@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xmlns:tx="http://www.springframework.org/schema/tx"
+ xmlns:p="http://www.springframework.org/schema/p" 
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:aop="http://www.springframework.org/schema/aop"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context   
+    	http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+  <bean id="memberdao" 
+  class="com.sara.member.dao.MemberDAOImpl"
+  parent="sqlMapClientTemplate"/>
+
+ <bean id="deptdao" 
+  class="com.sara.base.dao.DeptDAOImpl"
+  parent="sqlMapClientTemplate"/>
+  
+   <bean id="codedao" 
+  class="com.sara.base.dao.CodeDAOImpl"
+   parent="sqlMapClientTemplate"/>
+  
+ <bean id="memberServiceFacade" 
+     class="com.sara.member.service.MemberServiceFacadeImpl"
+     p:memberDao-ref="memberdao"
+     p:deptDao-ref="deptdao"
+     p:codeDao-ref="codedao"
+     p:messageSource-ref="messageSource"/>
+</beans>

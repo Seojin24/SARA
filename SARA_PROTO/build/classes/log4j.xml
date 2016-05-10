@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+<configuration xmlns='http://logging.apache.org/'>
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="[%d{HH:mm:ss.SSS}] %-5p %C{1}.%M(%F:%L) - %m%n" />
+        </layout>
+    </appender>
+
+   <appender name="FILEAPPENDER" class="org.apache.log4j.RollingFileAppender">
+      <param name="append" value="true" />
+      <param name="file" value="c:/temp/gtlog.log" />
+      <param name="maxFileSize" value="10MB" />
+      <param name="maxBackupIndex" value="10" />
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="[%d{HH:mm:ss.SSS}] %-5p %C{1}.%M(%F:%L) - %m%n" />
+      </layout>
+         <filter class="org.apache.log4j.varia.LevelRangeFilter">
+         <param name="LevelMin" value="DEBUG" />
+         <param name="LevelMax" value="FATAL" />
+      </filter>
+    </appender>
+      
+      <appender name="FATALAPPENDER" class="org.apache.log4j.RollingFileAppender">
+      <param name="append" value="true" />
+      <param name="file" value="c:/temp/fatallog.log" />
+      <param name="maxFileSize" value="10MB" />
+      <param name="maxBackupIndex" value="10" />
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%p - %C{1}.%M(%L) | %m%n" />
+      </layout>
+   </appender>
+   
+   <appender name="SMTPAPPENDER" class="com.sara.common.appender.SecureSMTPAppender">
+      <param name="BufferSize" value="512" />
+      <param name="SMTPHost" value="smtp.naver.com" />
+      <param name="SMTPPort" value="587" />
+      <param name="useStartTLS" value="true" />
+      <param name="SMTPUsername" value="teddy32" />
+      <param name="SMTPPassword" value="rlaektha0203" />
+      <param name="From" value="teddy32@naver.com" />
+      <param name="To" value="teddy32@naver.com" />
+      <param name="Subject" value="TEST - log4j - FATAL - SMTPAPPENDER" />
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="[%d{ISO8601}]%n%n%-5p%n%n%c%n%n%m%n%n" />
+      </layout>
+      <filter class="org.apache.log4j.varia.LevelRangeFilter">
+         <param name="LevelMin" value="ERROR" />
+         <param name="LevelMax" value="FATAL" />
+      </filter>
+   </appender>
+   
+     <root>
+      <level value="DEBUG" />
+      <appender-ref ref="CONSOLE" />
+   </root>
+   
+	 <logger name="com.sara" additivity="false">
+        <level value="DEBUG" />
+        <appender-ref ref="FILEAPPENDER" />
+         <appender-ref ref="SMTPAPPENDER" />
+    </logger>
+
+   <logger name="com" additivity="false">
+      <level value="FATAL" />
+      <appender-ref ref="SMTPAPPENDER" />
+   </logger>
+</configuration>
+
+

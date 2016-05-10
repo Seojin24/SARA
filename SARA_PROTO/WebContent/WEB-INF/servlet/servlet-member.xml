@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:context="http://www.springframework.org/schema/context" 
+ xmlns:p="http://www.springframework.org/schema/p"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+ <bean id="handlerMapping"
+  class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+  <property name="order" value="1" />
+  <property name="alwaysUseFullPath" value="true" />
+  <property name="mappings">
+   <props>
+    <prop key="/member/memberList.html">urlFilenameViewController</prop>
+    <prop key="/member/member.do">memberController</prop>
+    <prop key="/member/addMember.html">urlFilenameViewController</prop>
+    <prop key="/member/addImg.html">urlFilenameViewController</prop>
+    <prop key="/member/saveImg.do">urlFilenameViewController</prop>
+    <prop key="/member/loginForm.html">urlFilenameViewController</prop>
+   </props>
+  </property>
+ </bean>
+ <bean name="memberController" class="com.sara.member.controller.MemberController" 
+  p:memberServiceFacade-ref="memberServiceFacade"
+  p:messageSource-ref="messageSource"
+  p:methodNameResolver-ref="methodNameResolver"   
+  p:modelAndView-ref="modelAndView" 
+  p:cacheSeconds="0" />
+</beans>

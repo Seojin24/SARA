@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+ <settings useStatementNamespaces="true" cacheModelsEnabled="true"
+  enhancementEnabled="false" lazyLoadingEnabled="true"/>
+  <!-- base -->
+ <sqlMap resource="com/sara/base/dao/sqlmap/dept.xml"/>
+ <sqlMap resource="com/sara/base/dao/sqlmap/code.xml"/>
+ <sqlMap resource="com/sara/base/dao/sqlmap/codeDetail.xml"/>
+ <sqlMap resource="com/sara/base/dao/sqlmap/menu.xml"/>
+ <!--  member -->
+ <sqlMap resource="com/sara/member/dao/sqlmap/member.xml"/>
+ <!-- reservation -->
+
+</sqlMapConfig>

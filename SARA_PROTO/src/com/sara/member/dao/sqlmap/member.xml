@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQLMap 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="Member">
+	<typeAlias alias="memberBean" type="com.sara.member.to.MemberBean"/>
+<!-- 	<typeAlias alias="listForm" type="com.sara.common.to.ListForm"/> -->
+	<!-- 이 순서와 밑에 ?의 순서와 일치해야 한다. -->
+	<parameterMap id="memberParameterMap" class="memberBean"><!-- class다음은 별칭이 와야함 -->
+	<!-- parameterMap에서 property는 bean의 멤버변수와 같아야 한다  -->
+    	<parameter property="mbNo"  jdbcType="Number"/>
+    	<parameter property="mbStudentId"  jdbcType="VARCHAR"/>
+    	<parameter property="mbId"  jdbcType="VARCHAR"/>
+    	<parameter property="mbPw"  jdbcType="VARCHAR"/>
+    	<parameter property="mbName"  jdbcType="VARCHAR"/>
+    	<parameter property="mbBirth"  jdbcType="VARCHAR"/>
+    	<parameter property="mbPhone"  jdbcType="VARCHAR"/>
+    	<parameter property="mbEmail"  jdbcType="VARCHAR"/>
+    	<parameter property="mbPenalty"  jdbcType="VARCHAR"/>
+    	<parameter property="mb1"  jdbcType="VARCHAR"/>
+    	<parameter property="mb2"  jdbcType="VARCHAR"/>
+    	<parameter property="mb3"  jdbcType="VARCHAR"/>
+    	<parameter property="mb4"  jdbcType="VARCHAR"/>
+    	<parameter property="mb5"  jdbcType="VARCHAR"/>
+    </parameterMap>
+    
+    <resultMap id="memberBeanResultMap" class="memberBean">
+    <result property="mbNo" column="mb_no"/>
+	 <result property="mbStudentId" column="mb_name"/>
+	 <result property="mbId" column="mb_id"/><!-- property:bean column:table column -->
+     <result property="mbPw" column="mb_pw"/>
+      <result property="mbName" column="mb_name"/> 
+      <result property="mbBirth" column="mb_birth"/> 
+     <result property="mbPhone" column="mb_phone"/>
+     <result property="mbEmail" column="mb_email"/>
+     <result property="mbPenalty" column="mb_penalty"/>
+     <result property="mbIsAdmin" column="mb_is_admin"/>
+     <result property="mb1" column="mb_1"/>
+     <result property="mb2" column="mb_2"/>
+     <result property="mb3" column="mb_3"/>
+     <result property="mb4" column="mb_4"/>
+      <result property="mb5" column="mb_5"/>
+      <!-- 조인부분 : 복잡한 쿼리로 해결  -->
+<!--       <result property="dept" resultMap="Dept.deptBeanResultMap"/> -->
+      
+      
+    </resultMap>
+    
+    
+<!-- 	<insert id="insertmember" parameterMap="memberParameterMap" > -->
+<!-- 		INSERT INTO  -->
+<!-- 			member (member_NO,member_NAME,member_REGNO,GENDER_CODE,DEPT_CODE, -->
+<!-- 			POSITION_CODE,member_HIREDATE,member_TEL,member_PHONE,member_ZIP, -->
+<!-- 			member_ADDR,member_EMAIL,member_FILENAME,member_TmemberFILENAME)  -->
+<!-- 			(?,?,?,?,?,?,TO_DATE(?,'yyyy/mm/dd'),?,?,?,?,?,?,?) -->
+<!-- 	</insert> -->
+	  	
+	  	
+ 	<!-- resultClass는 반환하는 클래스(객체) 설정 --> 
+<!-- 	<select id="selectmemberBeanList" parameterClass="java.util.HashMap" resultMap="memberBeanResultMap"> -->
+<!-- 		SELECT * FROM  -->
+<!-- 		(SELECT ROWNUM AS rn,member_no,member_name,member_regno,gender_code, -->
+<!-- 		TO_char(member_hiredate,'yy/mm/dd') as member_hiredate ,member_tel,member_phone,member_email, -->
+<!-- 		member_zip,member_addr,e.dept_code,d.dept_name as dept_name,e.position_code,c.detail_name, -->
+<!-- 		member_filename,member_tmemberfilename FROM member e,DEPT d, -->
+<!-- 		code_info c WHERE e.DEPT_CODE=d.DEPT_CODE and e.position_code=c.detail_code) t  -->
+<!-- 		WHERE t.rn BETWEEN #sr# AND #er# -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="selectmemberCount" resultClass="java.lang.Integer"> -->
+<!-- 		select count(*) from member  -->
+<!-- 	</select> -->
+
+<!-- 	<update id="modifymember" parameterClass="memberBean" > -->
+<!-- 		UPDATE member SET -->
+<!-- 			member_tel		= #memberTel#, -->
+<!-- 			member_phone	= #memberPhone#, -->
+<!-- 			member_email	= #memberEmail#, -->
+<!-- 			member_zip		= #memberZip#, -->
+<!-- 			member_addr = #memberAddr#, -->
+<!-- 			member_filename= #memberFilename#, -->
+<!-- 			member_tmemberfilename= #memberTmemberfilename#, -->
+<!-- 			member_hiredate=to_date(#memberHiredate#,'yy/mm/dd') where member_no=#memberNo# -->
+<!-- 	</update> -->
+					
+<!-- 	<delete id="deletemember" parameterClass="java.lang.String"> -->
+<!-- 		delete from member where member_no=#memberNo# -->
+<!-- 	</delete> -->
+	
+ <!-- 	<select id="selectmember" parameterClass="java.lang.String" resultClass="memberBean">100%mapping되는게아니면 resultMapㄴㄴ --> 
+	<select id="selectMember" parameterClass="java.lang.String" resultMap="memberBeanResultMap">
+	select * from member where mb_id=#mbId#
+	</select>
+	
+	<select id="checkAdmin" parameterClass="java.lang.String" resultClass="java.lang.String">
+	select mb_is_admin FROM member WHERE mb_id=#mbId#
+	</select>
+	
+<!-- 	<select id="getLastmemberno" parameterClass="java.lang.String" resultClass="java.lang.String"> -->
+<!-- 	select member_no from member where member_no like #memberNo#||'%' order by member_no desc -->
+<!-- 	</select>%를넣는법 -->
+
+</sqlMap>

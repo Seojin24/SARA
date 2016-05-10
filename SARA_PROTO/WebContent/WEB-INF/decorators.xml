@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+ <decorators defaultdir="/WEB-INF/jsp">
+	<decorator name="main" page="decorator.jsp">
+        <pattern>/*</pattern>  
+	</decorator>
+<!-- 	<excludes> -->
+<!-- 	<pattern>/emp/addEmp.html</pattern> -->
+<!-- 	<pattern>/emp/addImg.html</pattern> -->
+<!-- 	<pattern>/emp/saveImg.do</pattern> -->
+<!-- 	<pattern>/base/post.do*</pattern> -->
+<!-- 	<pattern>/base/post.html</pattern> -->
+<!-- 	<pattern>/base/deptList.do</pattern> -->
+<!--     <pattern>/base/codeList.do*</pattern> -->
+<!--     <pattern>/base/deptList.do</pattern> -->
+<!--     <pattern>/base/positionCode.do</pattern> -->
+<!--    	<pattern>/product/searchItem.do*</pattern> -->
+<!--    	<pattern>/product/addItem.do</pattern> -->
+<!--    	<pattern>/purchase/searchMps.do</pattern> -->
+<!-- 	</excludes> -->
+ </decorators>

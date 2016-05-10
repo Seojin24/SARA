@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQLMap 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="Reservation">
+	<typeAlias alias="reservationBean" type="com.sara.reservation.to.ReservationBean"/>
+<!-- 	<typeAlias alias="listForm" type="com.sara.common.to.ListForm"/> -->
+	<!-- 이 순서와 밑에 ?의 순서와 일치해야 한다. -->
+	<parameterMap id="resParameterMap" class="reservationBean"><!-- class다음은 별칭이 와야함 -->
+	<!-- parameterMap에서 property는 bean의 멤버변수와 같아야 한다  -->
+    	<parameter property="rsNo"  jdbcType="VARCHAR"/>
+    	<parameter property="rsTimeInterval"  jdbcType="NUMBER"/>
+    	<parameter property="mbNo"  jdbcType="NUMBER"/>
+    	<parameter property="rsStartTime"  jdbcType="DATE"/>
+    	<parameter property="rsEndTime"  jdbcType="DATE"/>
+    	<parameter property="rsOTP"  jdbcType="VARCHAR"/>
+    	<parameter property="rs1"  jdbcType="VARCHAR"/>
+    	<parameter property="rs2"  jdbcType="VARCHAR"/>
+    	<parameter property="rs3"  jdbcType="VARCHAR"/>
+    	<parameter property="rs4"  jdbcType="VARCHAR"/>
+    	<parameter property="rs5"  jdbcType="VARCHAR"/>
+    	<parameter property="fcNo"  jdbcType="VARCHAR"/>
+    	<parameter property="rsPeopleNum"  jdbcType="VARCHAR"/>
+    	<parameter property="fcType"  jdbcType="VARCHAR"/>
+    	<parameter property="rsIsApproved"  jdbcType="VARCHAR"/>
+    	<parameter property="rsIsUse"  jdbcType="VARCHAR"/>
+    	<parameter property="rsMb1"  jdbcType="VARCHAR"/>
+    	<parameter property="rsMb2"  jdbcType="VARCHAR"/>
+    	<parameter property="rsMb3"  jdbcType="VARCHAR"/>
+    	<parameter property="rsMb4"  jdbcType="VARCHAR"/>
+    	<parameter property="rsMb5"  jdbcType="VARCHAR"/>
+    	<parameter property="rsMb6"  jdbcType="VARCHAR"/>
+    	<parameter property="rsMb7"  jdbcType="VARCHAR"/>
+    </parameterMap>
+    
+    <resultMap id="resBeanResultMap" class="reservationBean">
+      <!-- 조인부분 : 복잡한 쿼리로 해결  -->
+<!--       <result property="dept" resultMap="Dept.deptBeanResultMap"/> -->
+       	<result property="rsNo"  column="VARCHAR"/>
+    	<result property="rsTimeInterval"  column="NUMBER"/>
+    	<result property="mbNo"  column="NUMBER"/>
+    	<result property="rsStartTime"  column="DATE"/>
+    	<result property="rsEndTime"  column="DATE"/>
+    	<result property="rsOTP"  column="VARCHAR"/>
+    	<result property="rs1"  column="VARCHAR"/>
+    	<result property="rs2"  column="VARCHAR"/>
+    	<result property="rs3"  column="VARCHAR"/>
+    	<result property="rs4"  column="VARCHAR"/>
+    	<result property="rs5"  column="VARCHAR"/>
+    	<result property="fcNo"  column="VARCHAR"/>
+    	<result property="rsPeopleNum"  column="VARCHAR"/>
+    	<result property="fcType"  column="VARCHAR"/>
+    	<result property="rsIsApproved"  column="VARCHAR"/>
+    	<result property="rsIsUse"  column="VARCHAR"/>
+    	<result property="rsMb1"  column="VARCHAR"/>
+    	<result property="rsMb2"  column="VARCHAR"/>
+    	<result property="rsMb3"  column="VARCHAR"/>
+    	<result property="rsMb4"  column="VARCHAR"/>
+    	<result property="rsMb5"  column="VARCHAR"/>
+    	<result property="rsMb6"  column="VARCHAR"/>
+    	<result property="rsMb7"  column="VARCHAR"/>
+    </resultMap>
+    
+    
+	<insert id="insertRes" parameterMap="resParameterMap" >
+		INSERT INTO 
+			reservation (rs_no,rs_time_interval,rs_people_num,rs_OTP,rs_start_time,
+			rs_end_time,rs_is_approved,rs_is_use,mb_no,fc_no,fc_type,
+			rs_1,rs_2,rs_3,rs_4,rs_5,rs_mb1,rs_mb2,rs_mb3,rs_mb4,rs_mb5,rs_mb6,
+			rs_mb7) 
+			(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	</insert>
+	 
+	<delete id="deleteRes" parameterClass="java.lang.String">
+		delete from reservation where rs_no=#rsNo#
+	</delete>
+	  	
+ 	<!-- resultClass는 반환하는 클래스(객체) 설정 --> 
+<!-- 	<select id="selectmemberBeanList" parameterClass="java.util.HashMap" resultMap="memberBeanResultMap"> -->
+<!-- 		SELECT * FROM  -->
+<!-- 		(SELECT ROWNUM AS rn,member_no,member_name,member_regno,gender_code, -->
+<!-- 		TO_char(member_hiredate,'yy/mm/dd') as member_hiredate ,member_tel,member_phone,member_email, -->
+<!-- 		member_zip,member_addr,e.dept_code,d.dept_name as dept_name,e.position_code,c.detail_name, -->
+<!-- 		member_filename,member_tmemberfilename FROM member e,DEPT d, -->
+<!-- 		code_info c WHERE e.DEPT_CODE=d.DEPT_CODE and e.position_code=c.detail_code) t  -->
+<!-- 		WHERE t.rn BETWEEN #sr# AND #er# -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="selectmemberCount" resultClass="java.lang.Integer"> -->
+<!-- 		select count(*) from member  -->
+<!-- 	</select> -->
+
+<!-- 	<update id="modifymember" parameterClass="memberBean" > -->
+<!-- 		UPDATE member SET -->
+<!-- 			member_tel		= #memberTel#, -->
+<!-- 			member_phone	= #memberPhone#, -->
+<!-- 			member_email	= #memberEmail#, -->
+<!-- 			member_zip		= #memberZip#, -->
+<!-- 			member_addr = #memberAddr#, -->
+<!-- 			member_filename= #memberFilename#, -->
+<!-- 			member_tmemberfilename= #memberTmemberfilename#, -->
+<!-- 			member_hiredate=to_date(#memberHiredate#,'yy/mm/dd') where member_no=#memberNo# -->
+<!-- 	</update> -->
+					
+
+	
+ <!-- 	<select id="selectmember" parameterClass="java.lang.String" resultClass="memberBean">100%mapping되는게아니면 resultMapㄴㄴ --> 
+	<select id="selectRes" parameterClass="java.lang.String" resultMap="resBeanResultMap">
+	select * from reservation where rs_no=#rsNo#
+	</select>
+	
+<!-- 	<select id="checkAdmin" parameterClass="java.lang.String" resultClass="java.lang.String"> -->
+<!-- 	select mb_is_admin FROM member WHERE mb_id=#mbId# -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="getLastmemberno" parameterClass="java.lang.String" resultClass="java.lang.String"> -->
+<!-- 	select member_no from member where member_no like #memberNo#||'%' order by member_no desc -->
+<!-- 	</select>%를넣는법 -->
+
+</sqlMap>

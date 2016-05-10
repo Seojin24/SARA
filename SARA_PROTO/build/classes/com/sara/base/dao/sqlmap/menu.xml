@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQLMap 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Menu">
+	<typeAlias alias="menuBean" type="com.sara.base.to.MenuBean" />
+	
+	<resultMap class="menuBean" id="menuBeanResultMap">
+		<result property="level" column="level" />
+		<result property="menuTitle" column="MENU_TITLE" />
+		<result property="url" column="URL" />
+		<result property="parentMenuCode" column="PARENT_MENU_CODE" />
+		<result property="menuCode" column="MENU_CODE" />
+		<result property="adminCheck" column="ADMIN_CHECK" />
+	</resultMap>
+
+<!-- resultClass로 처리가안되는이유??? level이 menu테이블 안에 없는 칼럼이다-->
+<!-- 해결방법 resultMap 사용하기 -->
+	<select id="selectMenuList" resultMap="menuBeanResultMap">
+		select level,menu_title,url,parent_menu_code,menu_code,admin_check from menu
+		start with parent_menu_code is null connect by prior
+		menu_code=parent_menu_code
+	</select>
+</sqlMap>

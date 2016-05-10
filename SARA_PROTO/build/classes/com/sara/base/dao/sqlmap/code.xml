@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQLMap 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Code">
+	<typeAlias alias="codeBean" type="com.sara.base.to.CodeBean" />
+	
+<!-- 	<insert id="insertCode" parameterClass="codeBean"> -->
+<!-- 		insert into CATEGORY_CODE(CATEGORY_CODE,CATEGORY_NAME,MODI_WHETHER) values -->
+<!-- 		(#categoryCode#,#categoryName#,#modiWhether#) -->
+<!-- 	</insert> -->
+<!-- 	<select id="selectCode" parameterClass="java.lang.String" -->
+<!-- 		resultClass="codeBean"> -->
+<!-- 		select category_code categoryCode,category_name categoryName, -->
+<!-- 		modi_whether modiWhether from CATEGORY_CODE where CATEGORY_CODE = #categoryCode# -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="selectCodeList" resultClass="codeBean"> -->
+<!-- 		select * from CATEGORY_CODE -->
+<!-- 	</select> -->
+
+<!-- 	<select id="selectCodeBeanList" parameterClass="java.util.HashMap" -->
+<!-- 		resultClass="codeBean"> -->
+<!-- 		select * from (select rownum as rn, CATEGORY_CODE, CATEGORY_NAME, -->
+<!-- 		MODI_WHETHER from (select * from CATEGORY_CODE order by CATEGORY_CODE)t -->
+<!-- 		where t.rn between #sr# and #er#) -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="selectCodeCount" resultClass="java.lang.Integer"> -->
+<!-- 	select count(*) from category_code  -->
+<!-- 	</select> -->
+	
+<!-- 	<delete id="deleteCode" parameterClass="java.lang.String"> -->
+<!-- 	delete from category_CODE where category_code=#categoryCode# -->
+<!-- 	</delete> -->
+	
+<!-- 	<update id="updateCode" parameterClass="codeBean"> -->
+<!-- 	update CATEGORY_CODE set  CATEGORY_NAME=?#categoryName#, -->
+<!-- 	MODI_WHETHER=#modiWhether# where CATEGORY_CODE=#categoryCode# -->
+<!-- 	</update> -->
+
+
+</sqlMap>
