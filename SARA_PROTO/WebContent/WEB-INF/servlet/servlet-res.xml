@@ -14,14 +14,21 @@
   <property name="mappings">
    <props>
     <prop key="/reservation/proto.html">urlFilenameViewController</prop>
-    <prop key="/reservation/bomRegister.html">urlFilenameViewController</prop>
+    <prop key="/reservation/reservation.do*">resController</prop>
+<!--     <prop key="/reservation/bomRegister.html">urlFilenameViewController</prop> -->
 <!--     <prop key="/reservation/bom.do*">bomController</prop> -->
 <!--     <prop key="/reservation/item.do">itemController</prop> -->
-    <prop key="/reservation/addItem.do">urlFilenameViewController</prop>
-    <prop key="/reservation/searchItem.do">urlFilenameViewController</prop>
+<!--     <prop key="/reservation/addItem.do">urlFilenameViewController</prop> -->
+<!--     <prop key="/reservation/searchItem.do">urlFilenameViewController</prop> -->
    </props>
   </property>
  </bean>
+  <bean name="resController" class="com.sara.reservation.controller.ReservationController" 
+  p:productServiceFacade-ref="resServiceFacade"
+  p:messageSource-ref="messageSource"
+  p:methodNameResolver-ref="methodNameResolver"   
+   p:modelAndView-ref="modelAndView" 
+  p:cacheSeconds="0" />
 <!--  <bean name="itemController" class="com.jin.product.controller.ItemController"  -->
 <!--   p:productServiceFacade-ref="productServiceFacade" -->
 <!--   p:messageSource-ref="messageSource" -->

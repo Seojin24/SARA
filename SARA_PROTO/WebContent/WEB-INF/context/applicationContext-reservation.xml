@@ -29,9 +29,9 @@
 <!--      p:codedao-ref="codedao" -->
 <!--      p:messageSource-ref="messageSource" /> -->
 
-<bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
-<property name="delay" value="10000"/>
-<property name="period"/>
-</bean>
+<!-- <bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask"> -->
+<!-- <property name="delay" value="10000"/> -->
+<!-- <property name="period"/> -->
+<!-- </bean> -->
  
 </beans>

@@ -38,11 +38,11 @@ public class MemberController extends MultiActionController {
 	}
 	
 	MemberServiceFacade memberServiceFacade;
-	public void setmemberServiceFacade(MemberServiceFacade memberServiceFacade) {
+	public void setMemberServiceFacade(MemberServiceFacade memberServiceFacade) {
 		this.memberServiceFacade = memberServiceFacade;
 	}
 	
-	public ModelAndView getmemberList(HttpServletRequest request,
+	public ModelAndView getMemberList(HttpServletRequest request,
 			HttpServletResponse response) {
 		ArrayList<MemberBean> memberlist=new ArrayList<MemberBean>();
 		response.setContentType("text/json; charset=UTF-8");
@@ -59,9 +59,9 @@ public class MemberController extends MultiActionController {
 			
 			memberlist=memberServiceFacade.searchMemberList(listForm);
 			int pagecount=listForm.getPagecount();
-			System.out.println("list:"+memberlist);
-			System.out.println("dbcount:"+listForm.getDbcount());
-			System.out.println("pagecount:"+pagecount);
+//			System.out.println("list:"+memberlist);
+//			System.out.println("dbcount:"+listForm.getDbcount());
+//			System.out.println("pagecount:"+pagecount);
 			
 			modelObject.clear();
 			modelObject.put("page",pagenum);
@@ -85,7 +85,7 @@ public class MemberController extends MultiActionController {
 
 
 	
-	public  ModelAndView batchmemberList(HttpServletRequest request,
+	public  ModelAndView batchMemberList(HttpServletRequest request,
 			HttpServletResponse response) {
 	//	if (logger.isDebugEnabled()) {logger.debug("memberController-batchmemberList-Start");}
 		ArrayList<MemberBean> memberList=new ArrayList<MemberBean>();
@@ -116,7 +116,7 @@ public class MemberController extends MultiActionController {
 		return modelAndView;
 	}
 
-	public ModelAndView setmemberno(HttpServletRequest request,
+	public ModelAndView setMemberno(HttpServletRequest request,
 			HttpServletResponse response) {
 		//if (logger.isDebugEnabled()) {logger.debug("memberController-setmemberno-Start");}
 		try{
