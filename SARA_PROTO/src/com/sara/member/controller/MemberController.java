@@ -42,7 +42,7 @@ public class MemberController extends MultiActionController {
 		this.memberServiceFacade = memberServiceFacade;
 	}
 	
-	public ModelAndView getMemberList(HttpServletRequest request,
+	public ModelAndView findMemberList(HttpServletRequest request,
 			HttpServletResponse response) {
 		ArrayList<MemberBean> memberlist=new ArrayList<MemberBean>();
 		response.setContentType("text/json; charset=UTF-8");
@@ -57,7 +57,7 @@ public class MemberController extends MultiActionController {
 			listForm.setRowsize(rowsize);
 			listForm.setPagenum(pagenum);
 			
-			memberlist=memberServiceFacade.searchMemberList(listForm);
+			memberlist=memberServiceFacade.findMemberList(listForm);
 			int pagecount=listForm.getPagecount();
 //			System.out.println("list:"+memberlist);
 //			System.out.println("dbcount:"+listForm.getDbcount());
@@ -82,10 +82,11 @@ public class MemberController extends MultiActionController {
 		return modelAndView;
 	}
 	
+	
 
 
 	
-	public  ModelAndView batchMemberList(HttpServletRequest request,
+	public  ModelAndView batchMemberProcess(HttpServletRequest request,
 			HttpServletResponse response) {
 	//	if (logger.isDebugEnabled()) {logger.debug("memberController-batchmemberList-Start");}
 		ArrayList<MemberBean> memberList=new ArrayList<MemberBean>();
@@ -120,7 +121,7 @@ public class MemberController extends MultiActionController {
 			HttpServletResponse response) {
 		//if (logger.isDebugEnabled()) {logger.debug("memberController-setmemberno-Start");}
 		try{
-			String memberno = memberServiceFacade.getLastMemberno();
+			int memberno = memberServiceFacade.getLastMemberno();
 		
 			modelObject.clear();
 			modelObject.put("lastmemberno", memberno);
@@ -158,11 +159,13 @@ public class MemberController extends MultiActionController {
 			
 //			response.setContentType("text/json; charset=UTF-8");
 			
-			boolean log=memberServiceFacade.login(id, pw, request);
+			MemberBean log=memberServiceFacade.login(id, pw, request);
 			
-			if(log==true){
+			if(log!=null){
 				//viewname="/welcome";
 				request.getSession().setAttribute("mbId", id);
+				
+				//request.getSession().setAttribute("mbIsAdmin", "Y");
 			//	request.getSession().setAttribute("mbName", );
 		
 				//modelAndView=new ModelAndView(viewname,null);
@@ -195,7 +198,8 @@ public class MemberController extends MultiActionController {
 		//if (logger.isDebugEnabled()){logger.debug("memberController-logout-Start");}
 
 		memberServiceFacade.logout(request);
-		modelAndView.setViewName("../jsp/welcome");
+		//modelAndView.setViewName("../jsp/welcome");
+		modelAndView.setViewName("../jsp/member/loginForm");
 		//if (logger.isDebugEnabled()){logger.debug("memberController-logout-End");}
 
 		return modelAndView;

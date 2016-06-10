@@ -3,13 +3,14 @@
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
     
 <sqlMap namespace="Reservation">
-	<typeAlias alias="reservationBean" type="com.sara.reservation.to.ReservationBean"/>
+	<typeAlias alias="reservationBean" type="com.sara.res.to.ReservationBean"/>
+<!-- 	<typeAlias alias="facilityBean" type="com.sara.base.to.FacilityBean"/> -->
 <!-- 	<typeAlias alias="listForm" type="com.sara.common.to.ListForm"/> -->
 	<!-- 이 순서와 밑에 ?의 순서와 일치해야 한다. -->
 	<parameterMap id="resParameterMap" class="reservationBean"><!-- class다음은 별칭이 와야함 -->
 	<!-- parameterMap에서 property는 bean의 멤버변수와 같아야 한다  -->
     	<parameter property="rsNo"  jdbcType="VARCHAR"/>
-    	<parameter property="rsTimeInterval"  jdbcType="NUMBER"/>
+    	<parameter property="rsTimeInterval"  jdbcType="DATE"/>
     	<parameter property="mbNo"  jdbcType="NUMBER"/>
     	<parameter property="rsStartTime"  jdbcType="DATE"/>
     	<parameter property="rsEndTime"  jdbcType="DATE"/>
@@ -36,29 +37,29 @@
     <resultMap id="resBeanResultMap" class="reservationBean">
       <!-- 조인부분 : 복잡한 쿼리로 해결  -->
 <!--       <result property="dept" resultMap="Dept.deptBeanResultMap"/> -->
-       	<result property="rsNo"  column="VARCHAR"/>
-    	<result property="rsTimeInterval"  column="NUMBER"/>
-    	<result property="mbNo"  column="NUMBER"/>
-    	<result property="rsStartTime"  column="DATE"/>
-    	<result property="rsEndTime"  column="DATE"/>
-    	<result property="rsOTP"  column="VARCHAR"/>
-    	<result property="rs1"  column="VARCHAR"/>
-    	<result property="rs2"  column="VARCHAR"/>
-    	<result property="rs3"  column="VARCHAR"/>
-    	<result property="rs4"  column="VARCHAR"/>
-    	<result property="rs5"  column="VARCHAR"/>
-    	<result property="fcNo"  column="VARCHAR"/>
-    	<result property="rsPeopleNum"  column="VARCHAR"/>
-    	<result property="fcType"  column="VARCHAR"/>
-    	<result property="rsIsApproved"  column="VARCHAR"/>
-    	<result property="rsIsUse"  column="VARCHAR"/>
-    	<result property="rsMb1"  column="VARCHAR"/>
-    	<result property="rsMb2"  column="VARCHAR"/>
-    	<result property="rsMb3"  column="VARCHAR"/>
-    	<result property="rsMb4"  column="VARCHAR"/>
-    	<result property="rsMb5"  column="VARCHAR"/>
-    	<result property="rsMb6"  column="VARCHAR"/>
-    	<result property="rsMb7"  column="VARCHAR"/>
+       	<result property="rsNo"  column="rs_no"/>
+    	<result property="rsTimeInterval"  column="rs_time_interval"/>
+    	<result property="mbNo"  column="mb_no"/>
+    	<result property="rsStartTime"  column="rs_start_time"/>
+    	<result property="rsEndTime"  column="rs_end_time"/>
+    	<result property="rsOTP"  column="rs_otp"/>
+    	<result property="rs1"  column="rs_1"/>
+    	<result property="rs2"  column="rs_2"/>
+    	<result property="rs3"  column="rs_3"/>
+    	<result property="rs4"  column="rs_4"/>
+    	<result property="rs5"  column="rs_5"/>
+    	<result property="fcNo"  column="fc_no"/>
+    	<result property="rsPeopleNum"  column="rs_people_num"/>
+    	<result property="fcType"  column="fc_type"/>
+    	<result property="rsIsApproved"  column="rs_is_approved"/>
+    	<result property="rsIsUse"  column="rs_is_use"/>
+    	<result property="rsMb1"  column="rs_mb1"/>
+    	<result property="rsMb2"  column="rs_mb2"/>
+    	<result property="rsMb3"  column="rs_mb3"/>
+    	<result property="rsMb4"  column="rs_mb4"/>
+    	<result property="rsMb5"  column="rs_mb5"/>
+    	<result property="rsMb6"  column="rs_mb6"/>
+    	<result property="rsMb7"  column="rs_mb7"/>
     </resultMap>
     
     
@@ -106,8 +107,11 @@
 	
  <!-- 	<select id="selectmember" parameterClass="java.lang.String" resultClass="memberBean">100%mapping되는게아니면 resultMapㄴㄴ --> 
 	<select id="selectRes" parameterClass="java.lang.String" resultMap="resBeanResultMap">
-	select * from reservation where rs_no=#rsNo#
+	select * from reservation where fc_no=#fcNo#
 	</select>
+	
+<!--  select to_char(rs_start_time,'YYYY-MM-DD HH24:MI:SS')as rsStartTime from reservation -->
+	
 	
 <!-- 	<select id="checkAdmin" parameterClass="java.lang.String" resultClass="java.lang.String"> -->
 <!-- 	select mb_is_admin FROM member WHERE mb_id=#mbId# -->

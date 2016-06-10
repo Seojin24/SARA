@@ -56,7 +56,7 @@ public class CodeDetailDAOImpl extends SqlMapClientDaoSupport implements CodeDet
 	}
 
 	@Override
-	public String getCodeName(String cate, String gradeno) {
+	public String selectCodeName(String cate, String gradeno) {
 		HashMap<String,Object> Obj=new HashMap<String,Object>();
 		Obj.put("categoryCode", cate);
 		Obj.put("detailCode", gradeno);

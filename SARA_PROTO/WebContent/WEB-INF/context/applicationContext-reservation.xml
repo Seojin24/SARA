@@ -29,6 +29,16 @@
 <!--      p:codedao-ref="codedao" -->
 <!--      p:messageSource-ref="messageSource" /> -->
 
+
+ <bean id="resServiceFacade" 
+     class="com.sara.res.service.ReservationServiceFacadeImpl"
+     p:resDAO-ref="resDAO"
+     />
+
+ <bean id="resDAO" 
+  class="com.sara.res.dao.ReservationDAOImpl"
+  parent="sqlMapClientTemplate"/>
+
 <!-- <bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask"> -->
 <!-- <property name="delay" value="10000"/> -->
 <!-- <property name="period"/> -->

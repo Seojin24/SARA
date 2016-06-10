@@ -1,60 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="javax.xml.parsers.*"%>
-<%@ page import="org.w3c.dom.*"%>
-<%
-Document document=null;
-try{
- DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
- DocumentBuilder db = dbf.newDocumentBuilder();
- dbf.setNamespaceAware(false);
- dbf.setValidating(false);
- //document=db.parse("http://localhost"+request.getContextPath()+"/emp/emp.do?oper=getEmpXmlList");
- //${pageContext.request.contextPath} pageContext.request를 하는 이유? ->바로 request??하면 ?? --동일한 객체 
-//connection refused error -포트번호 오류 
- //document=db.parse("http://localhost"+((HttpServletRequest)pageContext.getRequest()).getContextPath()+"/emp/emp.do?oper=getEmpXmlList");
- //포트번호 반드시 입력 
- //http://localhost:8282/Spring1stProject/emp/listForm.html
- //document=db.parse("http://localhost:8282/Spring1stProject/emp/emp.do?oper=getEmpXmlList");
- document=db.parse("http://localhost:8282"+request.getContextPath()+"/emp/emp.do?oper=getEmpXmlList");
- NodeList nodeList = null;
- nodeList = document.getElementsByTagName("emp-bean");
- 
- Node node = nodeList.item(0);
- NodeList nodeCnodeList = node.getChildNodes();
- Node nodeCnode1 = nodeCnodeList.item(1);
- System.out.println("첫번째노드 "+nodeCnode1.getNodeName() +":"+ nodeCnode1.getFirstChild().getNodeValue() );
- 
- Node nodeCnode2 = nodeCnodeList.item(9);
- System.out.println("두번째노드 "+nodeCnode2.getNodeName() +":"+ nodeCnode2.getFirstChild().getNodeValue() );
- 
- NamedNodeMap nnm=node.getAttributes();
- Node node0=nnm.item(2);
- System.out.println(node0.getNodeName()+"="+node0.getNodeValue());
- 
-}catch(Exception e){
- e.printStackTrace();
-}
-
-%>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/sunny/jquery-ui.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/scripts/css/ui.jqgrid.css" />
-
-<script src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"
-	type="text/javascript"></script>
-<script
-	src="${pageContext.request.contextPath}/scripts/js/i18n/grid.locale-en.js"
-	type="text/javascript"></script>
-<script
-	src="${pageContext.request.contextPath}/scripts/js/jquery.jqGrid.min.js"
-	type="text/javascript"></script>
-<script
-	src="${pageContext.request.contextPath}/js/jquery-ui-1.9.2.custom.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.json-2.3.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
+<%-- <%@ page import="javax.xml.parsers.*"%> --%>
+<%-- <%@ page import="org.w3c.dom.*"%> --%>
 <style>
 #grid {
 	font-size: 20px;

@@ -17,6 +17,13 @@ import com.sara.base.service.BaseServiceFacade;
 import com.sara.base.to.DeptBean;
 import com.sara.common.to.ListForm;
 
+/**
+ * DeptController
+ *
+ * @Description 공통학부관리 컨트롤러
+ * @Author      김다솜
+ * Created on 2016. 05. 23.
+ */
 
 public class DeptController extends MultiActionController {
 	//BaseServiceFacade baseServiceFacade=BaseServiceFacadeImpl.getInstance();
@@ -41,7 +48,7 @@ public class DeptController extends MultiActionController {
 
 	
 	
-	public ModelAndView getDeptList(HttpServletRequest request,
+	public ModelAndView findDeptList(HttpServletRequest request,
 			HttpServletResponse response) {
 		//if (logger.isDebugEnabled()) {logger.debug("DeptController-getDeptList-Start");}
 		response.setContentType("text/json; charset=UTF-8");

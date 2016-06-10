@@ -139,74 +139,78 @@ function allProcess(list){
 }
 </script>
 <div id="moreDetailTabs">
-		<ul >
-			<li style="font-size:13px">사원정보</li>
-		</ul>
+<!-- 		<ul > -->
+<!-- 			<li style="font-size:13px"><h1>회원정보</h1></li> -->
+<!-- 		</ul> -->
+<center><h3>회원정보</h5></center>
 		<div id="empDetail">
 		<table id="empinfo">
 					<tr>
-						<td><input type="hidden" id="empFilename" name="empFilename">
-							<table><tr>
-							<td valign="top" ><iframe id='imgFrame' src="saveImg.do" frameborder="0" allowfullscreen width="180px" height="250px"></iframe></td>
-							</tr></table>
-						</td>
+
 						<td width="750px" valign="top">
 							<table align="center">
 								<tr>
-									<td><label>사원번호 : </label></td>
-									<td><input type=text id="empNo" name="empNo" size=7
-										></td>
+									<td><label>회원일련번호 : </label></td>
+									<td><input type=text id="mbNo" name="mbNo" size=7 readonly="readonly" value="${sessionScope.mbNo+1}"></td>
 										<!--readonly="readonly" 속성사용 ㄴㄴ   -->
 								</tr>
 								<tr>
 									<td><label>이 름 : </label></td>
-									<td><input type=text id="empName" name="empName" size=7></td>
+									<td><input type=text id="mbName" name="mbName" size=7></td>
 								</tr>
 								<tr>
-									<td><label>주민등록번호 : </label></td>
-									<td><input type=text id="empRegno" name="empRegno" size=7></td>
+									<td><label>아이디 : </label></td>
+									<td><input type=text id="mbId" name="mbId" size=7></td>
 								</tr>
 								<tr>
-									<td><label>성 별 : </label></td>
-									<td><input type="radio" name="empGender" value="M" checked>남
-									<input type="radio" name="empGender" value="F">여
-									</td>
+									<td><label>비밀번호 : </label></td>
+									<td><input type=text id="mbPw" name="mbPw" size=7></td>
 								</tr>
+<!-- 								<tr> -->
+<!-- 									<td><label>성 별 : </label></td> -->
+<!-- 									<td><input type="radio" name="empGender" value="M" checked>남 -->
+<!-- 									<input type="radio" name="empGender" value="F">여 -->
+<!-- 									</td> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td><label>입사일자: </label></td> -->
+<!-- 									<td><input type=text id="empDate" name="empDate" size=10></td> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td><label>전화번호: </label></td> -->
+<!-- 									<td><input type=text id="empTel" name="empTel" size=20></td> -->
+<!-- 								</tr> -->
 								<tr>
-									<td><label>입사일자: </label></td>
-									<td><input type=text id="empDate" name="empDate" size=10></td>
-								</tr>
-								<tr>
-									<td><label>전화번호: </label></td>
-									<td><input type=text id="empTel" name="empTel" size=20></td>
+									<td><label>생년월일: </label></td>
+									<td><input type=text id="mbBirth" name="mbBirth" size=20></td>
 								</tr>
 								<tr>
 									<td><label>휴대폰: </label></td>
-									<td><input type=text id="empPhone" name="empPhone" size=20></td>
+									<td><input type=text id="mbPhone" name="mbPhone" size=20></td>
 								</tr>
 								
 								<tr>
 									<td><label>이 메 일: </label></td>
-									<td><input type=text id="empEmail" name="empEmail" size=20></td>
+									<td><input type=text id="mbEmail" name="mbEmail" size=20></td>
 								</tr>
+<!-- 								<tr> -->
+<!-- 									<td><label>우편번호: </label></td> -->
+<!-- 									<td><input type=text id="empZipcode" name="empZipcode" -->
+<!-- 										size=7> <input type="button" id="zipBtn" -->
+<!-- 										value="우편번호"></td> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td><label>주 소: </label></td> -->
+<!-- 									<td><input type=text id="empAddress" name="empAddress" -->
+<!-- 										size=50></td> -->
+<!-- 								</tr> -->
 								<tr>
-									<td><label>우편번호: </label></td>
-									<td><input type=text id="empZipcode" name="empZipcode"
-										size=7> <input type="button" id="zipBtn"
-										value="우편번호"></td>
-								</tr>
-								<tr>
-									<td><label>주 소: </label></td>
-									<td><input type=text id="empAddress" name="empAddress"
-										size=50></td>
-								</tr>
-								<tr>
-									<td><label>부서코드: </label></td>
+									<td><label>소속학부대학: </label></td>
 									<td><input type=text name="deptNo" id="deptNo" size="4" readonly> <span id="empDept"></span>
 										<input type="button" id="selDeptBtn" value="+"></td>
 								</tr>
 								<tr>
-									<td><label>직급코드: </label></td>
+									<td><label>동아리: </label></td>
 									<td><input type=text name="positionNo" id="positionNo" size="2" readonly> <span id="empPosition"></span>
 									<input type="button" id="position" value="+"></td>
 								</tr>
@@ -222,3 +226,33 @@ function allProcess(list){
 		</table>
 		</div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

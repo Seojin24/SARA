@@ -40,26 +40,26 @@ public class MemberDAOImpl extends SqlMapClientDaoSupport implements MemberDAO {
 		getSqlMapClientTemplate().insert("Member.insertMember", MemberBean);
 	}
 	@Override
-	public void modifyMember(MemberBean MemberBean) {
+	public void updateMember(MemberBean MemberBean) {
 	
 		getSqlMapClientTemplate().queryForObject("Member.modifyMember",MemberBean);
 	}
 	@Override
-	public String getLastMemberno() { 
+	public int selectLastMemberno() { 
 		
-		String lastEmpno = "0000000";
-		int seq = 0;
-		Calendar calendar = Calendar.getInstance();
-		String yy = String.format("%04d", calendar.get(Calendar.YEAR)); // 2014
-		String mm = String.format("%02d", calendar.get(Calendar.MONTH) + 1);
-		String yymm = yy.substring(2) + mm; // 1409
+//		String lastEmpno = "0000000";
+//		int seq = 0;
+//		Calendar calendar = Calendar.getInstance();
+//		String yy = String.format("%04d", calendar.get(Calendar.YEAR)); // 2014
+//		String mm = String.format("%02d", calendar.get(Calendar.MONTH) + 1);
+//		String yymm = yy.substring(2) + mm; // 1409
 		
-		lastEmpno=(String)getSqlMapClientTemplate().queryForObject("Emp.getLastEmpno",yymm);
+		int lastMbno=(int)getSqlMapClientTemplate().queryForObject("Member.getLastMbNo");
 		
-		seq = Integer.parseInt(lastEmpno.substring(4, 7)) + 1;
-		lastEmpno = yymm + String.format("%03d", seq);
+//		seq = Integer.parseInt(lastEmpno.substring(4, 7)) + 1;
+//		lastEmpno = yymm + String.format("%03d", seq);
 		
-		return lastEmpno;
+		return lastMbno;
 	}
 	@Override
 	public void deleteMember(int memberNo) {

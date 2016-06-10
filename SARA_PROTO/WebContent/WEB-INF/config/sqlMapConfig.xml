@@ -13,5 +13,5 @@
  <!--  member -->
  <sqlMap resource="com/sara/member/dao/sqlmap/member.xml"/>
  <!-- reservation -->
-
+ <sqlMap resource="com/sara/res/dao/sqlmap/reservation.xml"/>
 </sqlMapConfig>

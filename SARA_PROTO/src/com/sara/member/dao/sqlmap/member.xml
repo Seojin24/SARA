@@ -96,8 +96,9 @@
 	select mb_is_admin FROM member WHERE mb_id=#mbId#
 	</select>
 	
-<!-- 	<select id="getLastmemberno" parameterClass="java.lang.String" resultClass="java.lang.String"> -->
-<!-- 	select member_no from member where member_no like #memberNo#||'%' order by member_no desc -->
-<!-- 	</select>%를넣는법 -->
+	<select id="getLastMbNo" resultClass="java.lang.Integer">
+	select mb_no from member order by mb_no desc
+	</select>
+<!-- 	%를넣는법 -->
 
 </sqlMap>

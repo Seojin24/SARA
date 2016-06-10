@@ -21,7 +21,7 @@ public class DeptDAOImpl extends SqlMapClientDaoSupport implements DeptDAO{
 
 
 	@Override
-	public String getDeptName(String deptNo) throws DataAccessException{
+	public String selectDeptName(String deptNo) throws DataAccessException{
 
 
 		//여기서 throw dataAccessException 을 왜하지?

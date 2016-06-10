@@ -56,11 +56,6 @@ public class MemberServiceFacadeImpl implements MemberServiceFacade {
 		this.messageSource = messageSource;
 	}
 
-	public Log getLogger() {
-		return logger;
-	}
-
-
 
 
 
@@ -69,7 +64,7 @@ public class MemberServiceFacadeImpl implements MemberServiceFacade {
 	
 
 	@Override
-	public ArrayList<MemberBean> searchMemberList(ListForm listForm) {
+	public ArrayList<MemberBean> findMemberList(ListForm listForm) {
 		
 			int dbcount = memberDao.selectMemberCount();
 			listForm.setDbcount(dbcount);
@@ -86,10 +81,10 @@ public class MemberServiceFacadeImpl implements MemberServiceFacade {
 			return count;
 	}
 
-	public String getLastMemberno() {
-			String empno = memberDao.getLastMemberno();
+	public int getLastMemberno() {
+			int mbno = memberDao.selectLastMemberno();
 
-			return empno;
+			return mbno;
 	}
 
 	@Override
@@ -104,7 +99,7 @@ public class MemberServiceFacadeImpl implements MemberServiceFacade {
 					memberDao.insertMember(memberBean);
 
 				} else if (status.equals("update")) {
-					memberDao.modifyMember(memberBean);
+					memberDao.updateMember(memberBean);
 				} else if (status.equals("delete")) {
 					int memberNo = memberBean.getMbNo();
 				
@@ -114,7 +109,7 @@ public class MemberServiceFacadeImpl implements MemberServiceFacade {
 			
 	}
 
-	public boolean login(String mbId, String mbPw, HttpServletRequest req)
+	public MemberBean login(String mbId, String mbPw, HttpServletRequest req)
 			throws MemberNonExistentException, MemberPwMismatchException {
 	
 			MemberBean member = memberDao.selectMember(mbId);
@@ -124,14 +119,14 @@ public class MemberServiceFacadeImpl implements MemberServiceFacade {
 				
 				if (member.getMbPw().equals(mbPw)) {
 					if (memberDao.checkAdmin(mbId)) {
-						//req.getSession().setAttribute("menu", "ADMIN");
+						req.getSession().setAttribute("mbIsAdmin", "ADMIN");
 						// 관리자 권한 부여
 					}
 				} else {
 					throw new MemberPwMismatchException("비밀번호가 일치하지 않습니다.");
 				}
 			}
-			return true;
+			return member;
 	}
 
 

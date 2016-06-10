@@ -10,6 +10,17 @@
 <script src='${pageContext.request.contextPath}/fullcalendar/fullcalendar.min.js'></script>
 <script>
 	$(document).ready(function() {
+		var resbean;
+		var dataSet; 
+		var resList=[];
+		alert(getResList());
+		$.ajax({
+			  url : 'getResList.jsp',  //'local'
+			    dataType:'json',
+			    success : function(data) {
+			    	alert("getResList"+data);
+			    }
+		});
 		
 		$('#calendar').fullCalendar({
 			//#generalDisplay 
@@ -68,71 +79,125 @@
 			eventLimit: true, // allow "more" link when too many events
 			//#Event Data
 			//fcNo : 장소 식별 번호 , 
+			
 			events:{
-				url: '/reservation/reservation.do?oper=getReservationList&fcNo=1',
+				url:'getResList.jsp', 
+					//'${pageContext.request.contextPath}/reservation/reservation.do?oper=findResList&fcNo=1',
 				error: function() {
 					$('#script-warning').show();
 				}
 			}
-// 			events: [
-// 				{
-// 					title: 'All Day Event',
-// 					start: '2016-05-01'
-// 				},
-// 				{
-// 					title: 'Long Event',
-// 					start: '2016-05-07',
-// 					end: '2016-05-10'
-// 				},
-// 				{
-// 					id: 999,
-// 					title: 'Repeating Event',
-// 					start: '2016-05-09T16:00:00'
-// 				},
-// 				{
-// 					id: 999,
-// 					title: 'Repeating Event',
-// 					start: '2016-05-16T16:00:00'
-// 				},
-// 				{
-// 					title: 'Conference',
-// 					start: '2016-05-11',
-// 					end: '2016-05-13'
-// 				},
-// 				{
-// 					title: 'Meeting',
-// 					start: '2016-05-12T10:30:00',
-// 					end: '2016-05-12T12:30:00'
-// 				},
-// 				{
-// 					title: 'Lunch',
-// 					start: '2016-05-12T12:00:00'
-// 				},
-// 				{
-// 					title: 'Meeting',
-// 					start: '2016-05-12T14:30:00'
-// 				},
-// 				{
-// 					title: 'Happy Hour',
-// 					start: '2016-05-12T17:30:00'
-// 				},
-// 				{
-// 					title: 'Dinner',
-// 					start: '2016-05-12T20:00:00'
-// 				},
-// 				{
-// 					title: 'Birthday Party',
-// 					start: '2016-05-13T07:00:00'
-// 				},
-// 				{
-// 					title: 'Click for Google',
-// 					url: 'http://google.com/',
-// 					start: '2016-05-28'
-// 				}
-// 			]
+			,
+			
+			events: [
+				{
+					title: 'All Day Event',
+					start: '2016-05-01'
+				},
+				{
+					title: 'Long Event',
+					start: '2016-05-07',
+					end: '2016-05-10'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2016-05-09 16:00:00'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2016-05-16T16:00:00'
+				},
+				{
+					title: 'Conference',
+					start: '2016-05-11',
+					end: '2016-05-13'
+				},
+				{
+					title: 'Meeting',
+					start: '2016-05-12T10:30:00',
+					end: '2016-05-12T12:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2016-05-12T12:00:00'
+				},
+				{
+					title: 'Meeting',
+					start: '2016-05-12T14:30:00'
+				},
+				{
+					title: 'Happy Hour',
+					start: '2016-05-12T17:30:00'
+				},
+				{
+					title: 'Dinner',
+					start: '2016-05-12T20:00:00'
+				},
+				{
+					title: 'Birthday Party',
+					start: '2016-05-13T07:00:00'
+				},
+				{
+					title: 'Click for Google',
+					url: 'http://google.com/',
+					start: '2016-05-28'
+				}
+			]
+			
+			});
 		});
-		
+	
+// 	function parseDate(resBean){
+// 		resbean=ObjectCopy(resBean);
+// 		res.title=resbean.fcNo;
+// 		res.start=resbean.rsStartTime;
+// 		res.end=resbean.rsEndTime;
+// 	}
+function getResList(){
+	
+	var resBeanList=[];
+	$.ajax({
+	    url : '${pageContext.request.contextPath}/reservation/reservation.do?oper=findResList&fcNo=1',  //'local'
+	    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	    type : 'post',
+	    dataType:'json',
+	   // data :{'list':list},
+	    success : function(data, textStatus, jqXHR) {
+			if(data.errorCode<0){
+				alert(data.errorMsg);
+			}else{
+				dataSet=data.list;
+ 				//alert(dataSet[0].rsStartTime.split(' ')[0]+"T"+dataSet[0].rsStartTime.split(' ')[1]);
+ 				//alert(dataSet[0].rsStartTime);
+ 				for(i=0;i<2;i++){
+ 					var res={"title":"","start":"","end":""};
+ 					var resBean=ObjectCopy(dataSet[i]);
+ 					//alert(resBean.fcNo+"resbean");
+ 					res.title=resBean.fcNo;
+ 					//alert(res.title);
+ 					res.start=resBean.rsStartTime.split(' ')[0];//+"T"+dataSet[i].rsStartTime.split(' ')[1];
+ 					res.end=resBean.rsEndTime.split(' ')[0];
+ 					resList.push(res);
+ 				}
+ 				//alert(resList);
+ 				resBeanList=resList;
+	      	}
+	    },
+	    error : function(jqXHR, textStatus, error) {
+	     //	alert("예약 현황을 받아오는데 오류가 발생했습니다.");
+	    }
 	});
+	return resBeanList;
+}
+
+
+	
+	function ObjectCopy(obj){
+		 return JSON.parse(JSON.stringify(obj));
+	}
+
 </script>
 <style>
 
@@ -149,6 +214,7 @@
 	}
 
 </style>
+
 </head>
 <body>
 <!-- <br><br><br><br><br><br> -->
@@ -157,6 +223,14 @@
 <!-- <div style="font-size: 80px; color: black; bold;">SJ Corporation</div> -->
 <!-- </center> -->
 
+	<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="/sara/welcome.html">Home</a> 
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="#">Dashboard</a></li>
+			</ul>
 	<div id='calendar'></div>
 
 </body>

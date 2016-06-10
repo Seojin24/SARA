@@ -1,68 +1,72 @@
-package com.sara.reservation.dao;
+package com.sara.res.dao;
 
 import java.util.ArrayList;
 
+import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
+
 import com.sara.base.to.FacilityBean;
 import com.sara.member.to.MemberBean;
-import com.sara.reservation.to.ReservationBean;
+import com.sara.res.to.ReservationBean;
 
-public class ReservationDAOImpl implements ReservationDAO {
+public class ReservationDAOImpl extends SqlMapClientDaoSupport implements ReservationDAO {
 
-	@Override
-	public ArrayList<ReservationBean> selectResBeanList() {
+	@Override @SuppressWarnings("unchecked") 
+	public ArrayList<ReservationBean> selectResBeanList(ReservationBean resBean) {
 		// TODO Auto-generated method stub
-		return null;
+
+		return (ArrayList<ReservationBean>)getSqlMapClientTemplate().queryForList("Reservation.selectRes",resBean);
 	}
 
-	@Override
+	@Override @SuppressWarnings("unchecked") 
 	public ArrayList<ReservationBean> selectResBeanList(MemberBean mbBean) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	@Override @SuppressWarnings("unchecked") 
 	public ArrayList<ReservationBean> selectResBeanList(FacilityBean fcBean) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("ResDAOΩ√¿€");
+		return (ArrayList<ReservationBean>)getSqlMapClientTemplate().queryForList("Reservation.selectRes",fcBean.getFcNo());
 	}
 
-	@Override
+	@Override @SuppressWarnings("unchecked") 
 	public int selectResCount() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	@Override @SuppressWarnings("unchecked") 
 	public String getLastResNo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	@Override @SuppressWarnings("unchecked") 
 	public void insertRes(ReservationBean resBean) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	@Override @SuppressWarnings("unchecked") 
 	public void deleteRes(int rsNo) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	@Override @SuppressWarnings("unchecked") 
 	public void updateRes(ReservationBean resBean) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	@Override @SuppressWarnings("unchecked") 
 	public ReservationBean selectRes(String rsNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	@Override @SuppressWarnings("unchecked") 
 	public boolean checkApproved(String rsNo) {
 		// TODO Auto-generated method stub
 		return false;

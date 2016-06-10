@@ -15,6 +15,14 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import com.sara.base.service.BaseServiceFacade;
 import com.sara.base.to.MenuBean;
+/**
+ * CodeController
+ *
+ * @Description 공통메뉴관리 컨트롤러
+ * @Author      김다솜
+ * Created on 2016. 05. 23.
+ */
+
 
 public class MenuController extends MultiActionController {
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -35,10 +43,10 @@ public class MenuController extends MultiActionController {
 		this.messageSource = messageSource;
 	}
 
-	public ModelAndView getMenuList(HttpServletRequest request,
+	public ModelAndView findMenuList(HttpServletRequest request,
 			HttpServletResponse response) {
 	//	if (logger.isDebugEnabled())logger.debug("시작");
-		ArrayList<MenuBean> menuList = baseServiceFacade.selectMenuList();
+		ArrayList<MenuBean> menuList = baseServiceFacade.findMenuList();
 
 		// JSONObject 한글인코딩 처리
 		response.setContentType("text/json; charset=UTF-8");

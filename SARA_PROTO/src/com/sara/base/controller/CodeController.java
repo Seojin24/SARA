@@ -18,6 +18,13 @@ import com.sara.base.service.BaseServiceFacade;
 import com.sara.base.to.CodeBean;
 import com.sara.common.to.ListForm;
 
+/**
+ * CodeController
+ *
+ * @Description 공통코드관리 컨트롤러
+ * @Author      김다솜
+ * Created on 2016. 05. 23.
+ */
 
 //public class CodeController implements Controller{
 public class CodeController extends MultiActionController{
@@ -44,7 +51,7 @@ public class CodeController extends MultiActionController{
 
 	
 	//getCodeInfoList 
-	public ModelAndView getCodeInfoList(HttpServletRequest request,
+	public ModelAndView findCodeInfoList(HttpServletRequest request,
 			HttpServletResponse response) {
 		String code=request.getParameter("code");
 		// --->code=position 
@@ -82,7 +89,7 @@ public class CodeController extends MultiActionController{
 		return modelAndView;
 	}
 
-	public ModelAndView batchCode(HttpServletRequest request,
+	public ModelAndView batchCodeProcess(HttpServletRequest request,
 			HttpServletResponse response) {
 //		HashMap<String,Object> modelObject=new HashMap<String,Object>();
 //		ArrayList<CodeBean> codeInfoList=new ArrayList<CodeBean>();
@@ -117,7 +124,7 @@ public class CodeController extends MultiActionController{
 	}
 
 	
-	public ModelAndView getCategoryCodeList(HttpServletRequest request,
+	public ModelAndView findCategoryCodeList(HttpServletRequest request,
 			HttpServletResponse response) {
 		HashMap<String,Object> modelObject=new HashMap<String,Object>();
 		response.setContentType("text/json; charset=UTF-8");

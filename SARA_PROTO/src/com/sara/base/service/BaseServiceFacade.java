@@ -6,7 +6,7 @@ import com.sara.base.to.MenuBean;
 
 
 public interface BaseServiceFacade {
-	ArrayList<MenuBean> selectMenuList();
+	ArrayList<MenuBean> findMenuList();
 	//CodeController 
 //	ArrayList<CodeBean> searchCodeInfo(ListForm listForm, String code);
 //	void batchCode(DetailCodeBean codeBean);

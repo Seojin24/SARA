@@ -1,4 +1,4 @@
-package com.sara.reservation.controller;
+package com.sara.res.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,9 +12,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
-import com.sara.member.to.MemberBean;
-import com.sara.reservation.service.ReservationServiceFacade;
-import com.sara.reservation.to.ReservationBean;
+import com.sara.base.to.FacilityBean;
+import com.sara.res.service.ReservationServiceFacade;
+import com.sara.res.to.ReservationBean;
 
 public class ReservationController extends MultiActionController{
 	HashMap<String,Object> modelObject=new HashMap<String,Object>();
@@ -34,31 +34,34 @@ public class ReservationController extends MultiActionController{
 		this.resServiceFacade = resServiceFacade;
 	}
 	
-	public ModelAndView getResList(HttpServletRequest request,
+	//예약조회 
+	public ModelAndView findResList(HttpServletRequest request,
 			HttpServletResponse response){
 		ArrayList<ReservationBean> resList=new ArrayList<ReservationBean>();
 		try{
-			
+			System.out.println("findResList");
 			//int facilityNo=Integer.parseInt(request.getParameter("fcNo")); 
 			//type string 
 			String facilityNo=request.getParameter("fcNo");//장소 정보 
 			//resList=resServiceFacade.searchResList();
 			
+			FacilityBean fcBean=new FacilityBean();
+			fcBean.setFcNo(facilityNo);
 			
+			resList=resServiceFacade.findResList(fcBean);
+			System.out.println(facilityNo+"findRestList 테스트");
 			
 			modelObject.clear();
 //			modelObject.put("page",pagenum);
 //			modelObject.put("total",pagecount);
-//			modelObject.put("list",memberlist);
+			modelObject.put("list",resList);
 			modelObject.put("errorCode", 0); 		
 			modelObject.put("errorMsg", "success");
-			modelObject.put("MemberBean",new MemberBean());
+			modelObject.put("ReservationBean",new ReservationBean());
 		}catch(Exception e){
 			modelObject.clear();
 			modelObject.put("errorCode", -1);
 			modelObject.put("errorMsg", "error");
-			
-			
 		}
 		
 		modelAndView.clear();
@@ -67,14 +70,15 @@ public class ReservationController extends MultiActionController{
 		return modelAndView;
 	}
 	
-	public ModelAndView batchResList(HttpServletRequest request,
+	//예약 일괄 처리 
+	public ModelAndView batchResProcess(HttpServletRequest request,
 			HttpServletResponse response){
 		ArrayList<ReservationBean> resList=new ArrayList<ReservationBean>();
 		try{
 			
 			//int facilityNo=Integer.parseInt(request.getParameter("fcNo")); 
 			//type string 
-			String facilityNo=request.getParameter("fcNo");//장소 정보 
+			//String facilityNo=request.getParameter("fcNo");//장소 정보 
 			//resList=resServiceFacade.searchResList();
 			
 			
@@ -85,7 +89,7 @@ public class ReservationController extends MultiActionController{
 //			modelObject.put("list",memberlist);
 			modelObject.put("errorCode", 0); 		
 			modelObject.put("errorMsg", "success");
-			modelObject.put("MemberBean",new MemberBean());
+			modelObject.put("MemberBean",new ReservationBean());
 		}catch(Exception e){
 			modelObject.clear();
 			modelObject.put("errorCode", -1);

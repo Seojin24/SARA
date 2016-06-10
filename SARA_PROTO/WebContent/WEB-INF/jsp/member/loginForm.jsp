@@ -20,13 +20,54 @@ $(document).ready(function(){
 		<br><br>
 		<table align="center">
 			<tr><td style="font-size:1em">아이디 :<td><input type="text" id="mbId" name="mbId"></td></tr>
-			<tr><td style="font-size:1em" >학번 :<td><input type="password" id="mbPw" name="mbPw"></td></tr>
+			<tr><td style="font-size:1em" >비밀번호 :<td><input type="password" id="mbPw" name="mbPw"></td></tr>
 			<tr><td colspan="2" align="center">
-				<input type="submit" value="확인" id="loginBtn">
+				<input type="submit" value="로그인" id="loginBtn">&nbsp
+				<input type="button" value="취소" id="cancelBtn"><br>
+				<br>
+				<div>
+				<a href="${pageContext.request.contextPath}/member/addMemberForm.html">회원가입</a>
+				&nbsp 
+				<a href="#">비밀번호 찾기</a>
+				</div>
+				
 			 </td></tr>
 </table>
-<center>${msg}</center>
+<center><font color="red">${msg}</font></center>
 </form>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </body>
 </html>

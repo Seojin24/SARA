@@ -13,8 +13,8 @@
   <property name="alwaysUseFullPath" value="true" />
   <property name="mappings">
    <props>
-    <prop key="/reservation/proto.html">urlFilenameViewController</prop>
-    <prop key="/reservation/reservation.do*">resController</prop>
+    <prop key="/reservation/resList.html">urlFilenameViewController</prop>
+    <prop key="/reservation/reservation.do">resController</prop>
 <!--     <prop key="/reservation/bomRegister.html">urlFilenameViewController</prop> -->
 <!--     <prop key="/reservation/bom.do*">bomController</prop> -->
 <!--     <prop key="/reservation/item.do">itemController</prop> -->
@@ -23,8 +23,8 @@
    </props>
   </property>
  </bean>
-  <bean name="resController" class="com.sara.reservation.controller.ReservationController" 
-  p:productServiceFacade-ref="resServiceFacade"
+  <bean name="resController" class="com.sara.res.controller.ReservationController" 
+  p:resServiceFacade-ref="resServiceFacade"
   p:messageSource-ref="messageSource"
   p:methodNameResolver-ref="methodNameResolver"   
    p:modelAndView-ref="modelAndView" 

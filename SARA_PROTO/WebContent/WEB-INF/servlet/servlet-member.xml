@@ -13,9 +13,9 @@
   <property name="alwaysUseFullPath" value="true" />
   <property name="mappings">
    <props>
-    <prop key="/member/memberList.html">urlFilenameViewController</prop>
+    <prop key="/member/memberListForm.html">urlFilenameViewController</prop>
     <prop key="/member/member.do">memberController</prop>
-    <prop key="/member/addMember.html">urlFilenameViewController</prop>
+    <prop key="/member/addMemberForm.html">urlFilenameViewController</prop>
     <prop key="/member/addImg.html">urlFilenameViewController</prop>
     <prop key="/member/saveImg.do">urlFilenameViewController</prop>
     <prop key="/member/loginForm.html">urlFilenameViewController</prop>

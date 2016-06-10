@@ -79,7 +79,7 @@ public class BaseServiceFacadeImpl implements BaseServiceFacade {
 	
 	
 	@Override
-	public ArrayList<MenuBean> selectMenuList() {
+	public ArrayList<MenuBean> findMenuList() {
 		ArrayList<MenuBean> menuList = menuDao.selectMenuList();
 
 		return menuList;

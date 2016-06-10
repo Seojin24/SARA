@@ -11,5 +11,5 @@ public interface CodeDetailDAO {
 	int selectCodeDetailCount(String codeno);
 	void deleteCodeDetailList(String codeno);
 	void deleteCodeDetail(CodeDetailBean CodeDetailBean);
-	String getCodeName(String cate, String gradeno2);
+	String selectCodeName(String cate, String gradeno2);
 }
